@@ -35,7 +35,7 @@ jobs:
       - name: docker build and push
         run: |
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-          docker build -t ${{ secrets.DOCKER_REPO }} .
+          docker build -t ${{ secrets.DOCKER_REPO }} --build-arg JAR_FILE=./build/libs/*.jar .
           docker push ${{ secrets.DOCKER_REPO }}
         
       - name: executing remote ssh commands using password
