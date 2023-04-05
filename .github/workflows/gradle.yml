@@ -33,7 +33,9 @@ jobs:
         run: ./gradlew clean build -x test
 
       - name: Set JAR name
-        run: echo "JAR_NAME=$(ls ./build/libs/*.jar)" >> $GITHUB_ENV
+        run: |
+          JAR_NAME=$(basename $(find ./build/libs -name "*.jar" | head -n 1))
+          echo "JAR_NAME=$JAR_NAME" >> $GITHUB_ENV
 
       - name: docker build and push
         run: |
