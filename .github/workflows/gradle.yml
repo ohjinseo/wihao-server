@@ -24,11 +24,12 @@ jobs:
           touch ./application.yml ./application-dev.yml
           echo "${{ secrets.APPLICATION_YML }}" >> ./application.yml 
           echo "${{ secrets.APPLICATION_DEV_YML }}" >> ./application-dev.yml
-          cd
         shell: bash
-    
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
       - name: Build with Gradle
-        run: sudo ./gradlew clean build -x test
+        run: ./gradlew build -x test
       
       - name: docker build and push
         run: |
