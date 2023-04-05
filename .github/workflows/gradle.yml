@@ -24,6 +24,7 @@ jobs:
           touch ./application.yml ./application-dev.yml
           echo "${{ secrets.APPLICATION_YML }}" >> ./application.yml 
           echo "${{ secrets.APPLICATION_DEV_YML }}" >> ./application-dev.yml
+          cd
         shell: bash
     
       - name: Build with Gradle
