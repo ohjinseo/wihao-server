@@ -10,9 +10,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BookDto {
-    private String category;
     private String title;
+    private String category;
     private String author;
-    private int issueYear;
     private String publisher;
+    private int issueYear;
 }

@@ -41,5 +41,6 @@ public class Book {
         this.author = author;
         this.publisher = publisher;
         this.issueYear = issueYear;
+        this.status = Status.ACTIVE;
     }
 }

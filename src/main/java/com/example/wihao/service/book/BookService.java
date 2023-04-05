@@ -1,6 +1,7 @@
 package com.example.wihao.service.book;
 
 import com.example.wihao.domain.book.Book;
+import com.example.wihao.dto.book.BookRequestDto;
 import com.example.wihao.dto.book.BookResponseDto;
 import com.example.wihao.exception.BookNotFoundException;
 import com.example.wihao.repository.book.BookRepository;
@@ -18,6 +19,12 @@ public class BookService {
     public BookResponseDto read(String ISBN) {
         Book book = bookRepository.findByISBNAndStatus(ISBN, Status.ACTIVE).orElseThrow(BookNotFoundException::new);
 
+        return BookResponseDto.toDto(book);
+    }
+
+    @Transactional
+    public BookResponseDto create(BookRequestDto req) {
+        Book book = bookRepository.save(BookRequestDto.toEntity(req));
         return BookResponseDto.toDto(book);
     }
 }
