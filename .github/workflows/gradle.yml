@@ -35,6 +35,10 @@ jobs:
           ./gradlew clean
           ./gradlew build -x test
 
+      - name: List JAR files
+        run: |
+          ls -la ./build/libs
+
       - name: docker build and push
         run: |
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
