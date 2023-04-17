@@ -32,8 +32,7 @@ jobs:
 
       - name: Build with Gradle
         run: |
-          ./gradlew clean
-          ./gradlew build -x test
+          ./gradlew clean build -x test
 
       - name: List JAR files
         run: |
