@@ -20,6 +20,7 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
+    private String name;
     private String password;
 
     @Override
@@ -48,8 +49,9 @@ public class User implements UserDetails {
     }
 
     @Builder
-    public User(String username, String password) {
+    public User(String username, String password, String name) {
         this.username = username;
         this.password = password;
+        this.name = name;
     }
 }

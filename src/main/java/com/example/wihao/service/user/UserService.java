@@ -24,7 +24,8 @@ public class UserService {
         String encodedPassword = passwordEncoder.encode(req.getPassword());
 
         User user = User.builder().username(req.getUsername())
-                .password(encodedPassword).build();
+                .password(encodedPassword)
+                .name(req.getName()).build();
 
         userRepository.save(user);
     }
