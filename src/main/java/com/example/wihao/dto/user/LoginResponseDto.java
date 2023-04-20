@@ -11,7 +11,9 @@ public class LoginResponseDto {
     private Long userId;
     private String jwt;
 
-    public static LoginResponseDto toDto(Long userId, String jwt) {
-        return new LoginResponseDto(userId, jwt);
+    private UserResponseDto userResponseDto;
+
+    public static LoginResponseDto toDto(Long userId, String jwt, UserResponseDto userResponseDto) {
+        return new LoginResponseDto(userId, jwt, userResponseDto);
     }
 }
