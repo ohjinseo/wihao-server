@@ -1,6 +1,7 @@
 package com.example.wihao.service.book;
 
 import com.example.wihao.domain.book.Book;
+import com.example.wihao.dto.book.BookReadCondition;
 import com.example.wihao.dto.book.BookRequestDto;
 import com.example.wihao.dto.book.BookResponseDto;
 import com.example.wihao.exception.BookNotFoundException;
@@ -9,6 +10,8 @@ import com.example.wihao.utils.Status;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -26,5 +29,9 @@ public class BookService {
     public BookResponseDto create(BookRequestDto req) {
         Book book = bookRepository.save(BookRequestDto.toEntity(req));
         return BookResponseDto.toDto(book);
+    }
+
+    public List<BookResponseDto> readAllByCondition(BookReadCondition condition) {
+        return bookRepository.findAllByCondition(condition);
     }
 }

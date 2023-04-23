@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface BookRepository extends JpaRepository<Book, String> {
+public interface BookRepository extends JpaRepository<Book, String>, BookRepositoryCustom {
     Optional<Book> findByISBNAndStatus(String ISBN, Status active);
 }
