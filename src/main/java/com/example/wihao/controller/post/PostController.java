@@ -27,7 +27,7 @@ public class PostController {
         return ResponseEntity.ok(postService.readAll());
     }
 
-    @GetMapping("/condition")
+    @PostMapping("/condition")
     public ResponseEntity<List<PostResponseDto>> readAllByCondition(
            @RequestBody PostReadCondition condition
     ) {
