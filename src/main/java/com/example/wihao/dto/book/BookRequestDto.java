@@ -17,7 +17,7 @@ public class BookRequestDto {
 
     public static Book toEntity(BookRequestDto dto) {
         return Book.builder().title(dto.getTitle())
-                .category(dto.getTitle())
+                .category(dto.getCategory())
                 .author(dto.getAuthor())
                 .publisher(dto.getPublisher())
                 .issueYear(dto.getIssueYear())
