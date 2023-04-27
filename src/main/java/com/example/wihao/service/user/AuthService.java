@@ -10,6 +10,7 @@ import com.example.wihao.dto.user.UserResponseDto;
 import com.example.wihao.exception.UserNameAlreadyExistsException;
 import com.example.wihao.repository.loan.LoanRepository;
 import com.example.wihao.repository.user.UserRepository;
+import com.example.wihao.utils.LoanStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -45,7 +46,7 @@ public class AuthService {
 
     public LoginResponseDto login(LoginRequestDto req) {
         User user = userRepository.findByUsername(req.getUsername());
-        List<Loan> loans = loanRepository.findByUser(user);
+        List<Loan> loans = loanRepository.findByUserAndLoanStatus(user, LoanStatus.RENTAL);
 
         return LoginResponseDto.toDto(user.getId(), jwtTokenProvider.createToken(user.getUsername()), UserResponseDto.of(loans, user));
     }
