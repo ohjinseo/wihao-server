@@ -1,6 +1,7 @@
 package com.example.wihao.advice;
 
 import com.example.wihao.exception.BookNotFoundException;
+import com.example.wihao.exception.LoanAlreadyExistsException;
 import com.example.wihao.exception.LoanNotFoundException;
 import com.example.wihao.exception.PostNotFoundException;
 import com.example.wihao.utils.ErrorResponse;
@@ -33,5 +34,12 @@ public class ExceptionAdvice {
     public ResponseEntity<ErrorResponse> handleLoanNotFoundException(LoanNotFoundException e) {
         ErrorResponse errorResponse = new ErrorResponse(LOAN_NOT_FOUND.getCode(), LOAN_NOT_FOUND.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
+    }
+
+    @ExceptionHandler(LoanAlreadyExistsException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public ResponseEntity<ErrorResponse> handleLoanAlreadyExistsException(LoanAlreadyExistsException e) {
+        ErrorResponse errorResponse = new ErrorResponse(LOAN_ALREADY_EXISTS.getCode(), LOAN_ALREADY_EXISTS.getMessage());
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
     }
 }

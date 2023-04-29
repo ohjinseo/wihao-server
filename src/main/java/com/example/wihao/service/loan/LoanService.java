@@ -5,6 +5,7 @@ import com.example.wihao.domain.loan.Loan;
 import com.example.wihao.domain.user.User;
 import com.example.wihao.dto.loan.LoanResponseDto;
 import com.example.wihao.exception.BookNotFoundException;
+import com.example.wihao.exception.LoanAlreadyExistsException;
 import com.example.wihao.exception.LoanNotFoundException;
 import com.example.wihao.repository.book.BookRepository;
 import com.example.wihao.repository.loan.LoanRepository;
@@ -27,6 +28,10 @@ public class LoanService {
     @Transactional
     public LoanResponseDto create(String ISBN, User user) {
         Book book = bookRepository.findByISBNAndStatus(ISBN, Status.ACTIVE).orElseThrow(BookNotFoundException::new);
+
+        if (loanRepository.existsLoansByBook(book)) {
+            throw new LoanAlreadyExistsException();
+        }
 
         Loan loan = Loan.builder()
                 .user(user)
