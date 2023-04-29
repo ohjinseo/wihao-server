@@ -25,16 +25,15 @@ public class SecurityConfig {
         AuthenticationManager authenticationManager = http.getSharedObject(AuthenticationManager.class);
 
         http.csrf().disable();
-        http.authorizeHttpRequests().anyRequest().permitAll();
-//        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//                .and()
-//                .formLogin().disable()
-//                .httpBasic().disable()
-//                .authorizeHttpRequests()
-//                .requestMatchers("/api/**").authenticated()
-//                .anyRequest().permitAll()
-//                .and()
-//                .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .formLogin().disable()
+                .httpBasic().disable()
+                .authorizeHttpRequests()
+                .requestMatchers("/api/**").authenticated()
+                .anyRequest().permitAll()
+                .and()
+                .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
