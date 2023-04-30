@@ -24,6 +24,8 @@ public class Book {
 
     private String publisher;
 
+    private String imgUrl;
+
     private int issueYear;
 
     @Enumerated(EnumType.STRING)
@@ -35,10 +37,11 @@ public class Book {
     }
 
     @Builder
-    public Book(String title, String category, String author, String publisher, int issueYear) {
+    public Book(String title, String category, String author, String publisher, int issueYear, String imgUrl) {
         this.title = title;
         this.category = category;
         this.author = author;
+        this.imgUrl = imgUrl;
         this.publisher = publisher;
         this.issueYear = issueYear;
         this.status = Status.ACTIVE;

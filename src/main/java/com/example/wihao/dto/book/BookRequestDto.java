@@ -14,6 +14,7 @@ public class BookRequestDto {
     private String author;
     private String publisher;
     private int issueYear;
+    private String imgUrl;
 
     public static Book toEntity(BookRequestDto dto) {
         return Book.builder().title(dto.getTitle())
@@ -21,6 +22,7 @@ public class BookRequestDto {
                 .author(dto.getAuthor())
                 .publisher(dto.getPublisher())
                 .issueYear(dto.getIssueYear())
+                .imgUrl(dto.getImgUrl())
                 .build();
     }
 }

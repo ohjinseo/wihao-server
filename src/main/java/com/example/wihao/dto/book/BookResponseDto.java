@@ -15,7 +15,7 @@ public class BookResponseDto {
     private String author;
     private String publisher;
     private int issueYear;
-
+    private String imgUrl;
     public static BookResponseDto toDto(Book book) {
         return new BookResponseDto(
                 book.getISBN(),
@@ -23,7 +23,8 @@ public class BookResponseDto {
                 book.getCategory(),
                 book.getAuthor(),
                 book.getPublisher(),
-                book.getIssueYear()
+                book.getIssueYear(),
+                book.getImgUrl()
         );
     }
 }
