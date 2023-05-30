@@ -45,7 +45,7 @@ public class LoanService {
     public LoanResponseDto returnBook(String ISBN) {
         Book book = bookRepository.findByISBNAndStatus(ISBN, Status.ACTIVE).orElseThrow(BookNotFoundException::new);
         Loan loan = loanRepository.findByBookAndLoanStatus(book, LoanStatus.RENTAL).orElseThrow(LoanNotFoundException::new);
-        loan.returnBook();
+        loanRepository.deleteByBook(book);
         return LoanResponseDto.of(loan);
     }
 

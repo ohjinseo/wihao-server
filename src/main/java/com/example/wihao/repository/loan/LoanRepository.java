@@ -13,6 +13,8 @@ public interface LoanRepository extends JpaRepository<Loan, Long> {
     List<Loan> findByUserAndLoanStatus(User user, LoanStatus loanStatus);
     Optional<Loan> findByBookAndLoanStatus(Book book, LoanStatus loanStatus);
 
+    void deleteByBook(Book book);
+
     Boolean existsLoansByBook(Book book);
 }
 
